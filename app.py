@@ -11,18 +11,6 @@ def get_db_connection():
     return conn
 
 
-# student = cur.execute("SELECT * FROM student")
-#
-# for row in student:
-#     std_list.append({
-#         'id': len(std_list) + 1,
-#         'name': row[1],
-#         'gender': row[2],
-#         'email': row[3],
-#         'phone': row[4],
-#         'address': row[5]
-#     })
-#
 app = Flask(__name__)
 
 conn = get_db_connection()
@@ -121,7 +109,7 @@ def update():
     address = request.form['address']
 
     # Check if the ID is less than 10, if so, redirect without updating
-    if id < 10:
+    if id < len(std_list):
         for user in std_list:
             if user['id'] == id:
                 user.update({
