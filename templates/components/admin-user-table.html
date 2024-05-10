@@ -1,0 +1,30 @@
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in data %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ item['name'] }}</td>
+            <td>{{ item['gender'] }}</td>
+            <td>{{ item['phone'] }}</td>
+            <td>{{ item['email'] }}</td>
+            <td>{{ item['address'] }}</td>
+            <td class="d-flex gap-2">
+                <a href="{{ url_for("show") }}?name={{ item['name'] }}" class="btn btn-info mx-1 ">Show</a>
+                <a href="{{ url_for('edit') }}?id={{ item['id'] }}" class="btn btn-primary mx-1">Edit</a>
+                <a href="{{ url_for('confirm_delete') }}?name={{ item['name'] }}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
